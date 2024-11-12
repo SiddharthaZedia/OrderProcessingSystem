@@ -33,5 +33,6 @@ if (app.Environment.IsDevelopment())
 }
 app.UseAuthorization();
 app.UseMiddleware<LoggingMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
 app.Run();
