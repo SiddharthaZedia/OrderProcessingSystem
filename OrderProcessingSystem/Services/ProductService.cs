@@ -9,10 +9,10 @@ namespace OrderProcessingSystem.Services
 {
     public class ProductService : IProduct
     {
-        private readonly OrderPrcossingDbContext _context;
+        private readonly OrderProcessingDbContext _context;
         private readonly IMapper _mapper;
 
-        public ProductService(OrderPrcossingDbContext context, IMapper autoMapper)
+        public ProductService(OrderProcessingDbContext context, IMapper autoMapper)
         {
             _context = context;
             _mapper = autoMapper;
@@ -23,9 +23,9 @@ namespace OrderProcessingSystem.Services
         }
         public async Task<ProductDto?> GetProduct(int id, CancellationToken cancellationToken)
         {
-            var Product = await _context.Products.FindAsync(id);
-            if (Product != null)
-                return _mapper.Map<Product, ProductDto>(Product);
+            var product = await _context.Products.FindAsync(id);
+            if (product != null)
+                return _mapper.Map<Product, ProductDto>(product);
             return null;
         }
         public async Task<int> CreateProduct(ProductRequest productRequest)
@@ -35,6 +35,16 @@ namespace OrderProcessingSystem.Services
             if (await _context.SaveChangesAsync() > 0)
                 return product.ProductId;
             return 0;
+        }
+
+        public async Task<int> UpdateProduct(int id, UpdateRequest productRequest)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+                return 0;
+            product = _mapper.Map<UpdateRequest, Product>(productRequest);
+            _context.Entry(product).State = EntityState.Modified;
+            return await _context.SaveChangesAsync() > 0 ? 1 : 0;
         }
     }
 }

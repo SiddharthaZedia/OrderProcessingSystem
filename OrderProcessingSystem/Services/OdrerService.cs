@@ -9,10 +9,10 @@ namespace OrderProcessingSystem.Services
 {
     public class OdrerService : IOrder
     {
-        private readonly OrderPrcossingDbContext _context;
+        private readonly OrderProcessingDbContext _context;
         private readonly IMapper _mapper;
 
-        public OdrerService(OrderPrcossingDbContext context, IMapper autoMapper)
+        public OdrerService(OrderProcessingDbContext context, IMapper autoMapper)
         {
             _context = context;
             _mapper = autoMapper;
@@ -23,7 +23,8 @@ namespace OrderProcessingSystem.Services
         }
         public async Task<OrderDto?> GetOrder(int id, CancellationToken cancellationToken)
         {
-            var order = await _context.Orders.Include(o => o.OrderItems).ThenInclude(oi => oi.Product).FirstOrDefaultAsync(o => o.OrderId == id);
+            var order = await _context.Orders.Include(o => o.OrderItems)
+                .ThenInclude(oi => oi.Product).FirstOrDefaultAsync(o => o.OrderId == id);
             if (order != null)
                 return _mapper.Map<Order, OrderDto>(order);
             return null;

@@ -37,4 +37,12 @@ public class ProductController : ControllerBase
             return CreatedAtAction(nameof(GetProduct), new { id = productId });
         return StatusCode(500);
     }
+    [HttpPut("{id}")]
+    public async Task<ActionResult> UpdateProduct(int id, UpdateRequest productRequest)
+    {
+        int productId = await _ProductService.UpdateProduct(id, productRequest);
+        if (productId > 0)
+            return NoContent();
+        return StatusCode(500);
+    }
 }

@@ -8,10 +8,10 @@ namespace OrderProcessingSystem.Services
 {
     public class CustomerService:ICustomer
     {
-        private readonly OrderPrcossingDbContext _context;
+        private readonly OrderProcessingDbContext _context;
         private readonly IMapper _mapper;
 
-        public CustomerService(OrderPrcossingDbContext context, IMapper autoMapper)
+        public CustomerService(OrderProcessingDbContext context, IMapper autoMapper)
         {
             _context = context;
             _mapper = autoMapper;

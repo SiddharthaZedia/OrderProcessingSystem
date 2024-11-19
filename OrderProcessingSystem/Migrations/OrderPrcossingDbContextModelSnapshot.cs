@@ -10,7 +10,7 @@ using OrderProcessingSystem.Repositories;
 
 namespace OrderProcessingSystem.Migrations
 {
-    [DbContext(typeof(OrderPrcossingDbContext))]
+    [DbContext(typeof(OrderProcessingDbContext))]
     partial class OrderPrcossingDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

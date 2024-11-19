@@ -3,9 +3,9 @@ using OrderProcessingSystem.Model.Domain;
 
 namespace OrderProcessingSystem.Repositories
 {
-    public class OrderPrcossingDbContext : DbContext
+    public class OrderProcessingDbContext : DbContext
     {
-        public OrderPrcossingDbContext(DbContextOptions<OrderPrcossingDbContext> options) : base(options) { }
+        public OrderProcessingDbContext(DbContextOptions<OrderProcessingDbContext> options) : base(options) { }
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }

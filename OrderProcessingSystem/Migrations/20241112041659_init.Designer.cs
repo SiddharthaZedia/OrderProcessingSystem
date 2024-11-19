@@ -11,7 +11,7 @@ using OrderProcessingSystem.Repositories;
 
 namespace OrderProcessingSystem.Migrations
 {
-    [DbContext(typeof(OrderPrcossingDbContext))]
+    [DbContext(typeof(OrderProcessingDbContext))]
     [Migration("20241112041659_init")]
     partial class init
     {
