@@ -4,6 +4,7 @@ using OrderProcessingSystem.Interfaces;
 using OrderProcessingSystem.Model.Domain;
 using OrderProcessingSystem.Model.DTO;
 using OrderProcessingSystem.Repositories;
+using System.ComponentModel.DataAnnotations;
 namespace OrderProcessingSystem.Services
 {
     public class CustomerService:ICustomer
@@ -35,5 +36,9 @@ namespace OrderProcessingSystem.Services
                 return customer.CustomerId;
             return 0;
         }
+
+
     }
+
+
 }

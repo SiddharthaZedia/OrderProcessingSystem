@@ -11,6 +11,31 @@ using OrderProcessingSystem.Repositories;
 using OrderProcessingSystem.Services;
 using System.Text;
 
+string endpointUrl = "https://www.financialservice.com/stockdata";
+string soapEnvelope = @"<?xml version='1.0' encoding='utf-8'?>
+         <soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:web='http://www.financialservice.com/web'>
+            <soapenv:Header/>
+            <soapenv:Body>
+               <web:GetStockPrice>
+                  <web:StockSymbol>MSFT</web:StockSymbol>
+               </web:GetStockPrice>
+            </soapenv:Body>
+         </soapenv:Envelope>";
+var input = new List<string> { "2010/02/20", "2 016p 19p 12", "11-18-2012", "2018 12 24", "20130720" };
+DateTransform.TransformDateFormat(input).ForEach(Console.WriteLine);
+HttpClient client = new HttpClient();
+var request = new HttpRequestMessage(HttpMethod.Post, endpointUrl)
+{
+    Content = new StringContent(soapEnvelope, Encoding.UTF8, "text/xml")
+};
+
+// Send the SOAP request
+HttpResponseMessage response = client.SendAsync(request).Result;
+
+// Read and parse the response
+string responseContent = response.Content.ReadAsStringAsync().Result;
+Console.WriteLine(responseContent);
+
 var builder = WebApplication.CreateBuilder(args);
 
 

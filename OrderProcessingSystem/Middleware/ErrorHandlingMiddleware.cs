@@ -16,9 +16,10 @@ namespace OrderProcessingSystem.Middleware
         {
             try
             {
+                Enumerable.Repeat("", 10);
                 await _next(context);
             }
-            catch (Exception ex)
+                catch (Exception ex)
             {
                 // Log the exception details
                 _logger.LogError(ex, "An unexpected error occurred.");

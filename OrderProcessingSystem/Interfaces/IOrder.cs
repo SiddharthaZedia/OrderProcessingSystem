@@ -8,5 +8,6 @@ namespace OrderProcessingSystem.Interfaces
         Task<IEnumerable<OrderDto>> GetOrders(CancellationToken cancellationToken);
         Task<OrderDto?> GetOrder(int id, CancellationToken cancellationToken);
         Task<int> CreateOrder(OrderRequest OrderRequest);
+        OrderDto? GetOrderById(int id, CancellationToken cancellationToken);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Azure.Messaging.ServiceBus;
 using Microsoft.EntityFrameworkCore;
 using OrderProcessingSystem.Interfaces;
 using OrderProcessingSystem.Model.Domain;
@@ -34,6 +35,9 @@ namespace OrderProcessingSystem.Services
             _context.Products.Add(product);
             if (await _context.SaveChangesAsync() > 0)
                 return product.ProductId;
+            ServiceBusClient serviceBusClient = new ServiceBusClient("");
+            ServiceBusMessage message = new ServiceBusMessage("* hello azure");
+           // serviceBusClient.CreateSender("").SendMessagesAsync(message,);
             return 0;
         }
 

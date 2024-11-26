@@ -1,13 +1,12 @@
 ﻿using OrderProcessingSystem.Interfaces;
 using OrderProcessingSystem.Model.Request;
+using System.Collections.Generic;
 
 namespace OrderProcessingSystem.Services
 {
-    public class ProductServices : IShoppingCart
+    
+    public class ProductServices 
     {
-        public void AddToCart(ProductRequest productRequest)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
